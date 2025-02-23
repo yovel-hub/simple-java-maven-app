@@ -17,7 +17,7 @@ jobs:
       run: echo "version=${{ github.run_number }}" >> $GITHUB_ENV
 
     - name: update version to POM file
-      run: sed -i 's/<version>1.0.0<\/version>/<version>1.0.'"$version"'<\/version>/' pom.xml
+      run: sed -i 's/<version>1.0.0<\/version>/<version>1.0.$version<\/version>/' pom.xml
       
     - name: Check version value
       run: echo "version is:$version"
