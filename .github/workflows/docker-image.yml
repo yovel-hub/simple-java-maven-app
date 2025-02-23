@@ -46,5 +46,5 @@ jobs:
          docker rm container_$version || true
          docker run -d --name container_$version ${{ secrets.USER_DOCKER_HUB }}/hello_word_project:$version
          docker logs container_$version
-          EOF
+         EOF
 
