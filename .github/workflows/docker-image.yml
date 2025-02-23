@@ -17,6 +17,9 @@ jobs:
       run: version="${{ github.run_number }}"
     - name: update version to POM file
       run: sed -i 's/<version>.*<\/version>/<version>1.0.$version<\/version>/' pom.xml
+      
+    - name: Check version value
+      run: echo "Version is:$version"
 
     
     - name: Build the Docker image
