@@ -8,6 +8,9 @@ COPY src/ ./src
 
 RUN mvn clean  package --file pom.xml
 
+RUN ls -al /app/target/
+
+
 FROM openjdk:17.0.2-slim-buster AS run 
 
 WORKDIR /app
