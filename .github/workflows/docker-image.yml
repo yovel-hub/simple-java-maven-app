@@ -40,11 +40,10 @@ jobs:
 
     - name: Deploy the image
       run: |
-         ssh -o StrictHostKeyChecking=no -i new_key.pem ubuntu@ec2-18-209-227-146.compute-1.amazonaws.com <<EOF
+         ssh -o StrictHostKeyChecking=no -i new_key.pem ubuntu@ec2-18-209-227-146.compute-1.amazonaws.com '
          docker pull ${{ secrets.USER_DOCKER_HUB }}/hello_word_project:$version
          docker stop APPcontainer || true
          docker rm APPcontainer || true
          docker run -d --name APPcontainer ${{ secrets.USER_DOCKER_HUB }}/hello_word_project:$version
-         docker logs APPcontainer
-         EOF
+         '
 
