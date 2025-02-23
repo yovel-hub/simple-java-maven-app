@@ -1,4 +1,4 @@
-FROM maven:3.9.5-eclipse-temurin-17 AS build
+FROM maven:3.9.2-eclipse-temurin-17-focal AS build
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ COPY src/ ./src
 
 RUN mvn package  
 
-FROM eclipse-temurin:17-jre-alpine
+FROM openjdk:17.0.2-slim-buster AS run 
 
 WORKDIR /app
 
