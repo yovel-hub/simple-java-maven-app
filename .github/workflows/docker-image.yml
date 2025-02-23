@@ -27,7 +27,7 @@ jobs:
       run: docker build --build-arg VERSION=$version . --file Dockerfile --tag hello_word_project:$version
     
     - name: log in to docker hub
-      run: docker login -u ${{ secrets.USER_DOCKER_HUB }} -p ${{ secrets.DOCKERHUB_PASSWORD }} 
+      run: docker login -u ${{ secrets.USER_DOCKER_HUB }} -p ${{ secrets.PASSWORD_DOCKER_HUB }} 
     
     - name: push the image to docker hub  
       run: docker push ${{ secrets.USER_DOCKER_HUB }}/hello_word_project:$version
