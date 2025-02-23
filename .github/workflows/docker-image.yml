@@ -16,8 +16,8 @@ jobs:
     - name: set version to var version
       run: version="${{ github.run_number }}"
     - name: update version to POM file
-      run: sed -i 's/<version>.*<\/version>/<version>$version<\/version>/' pom.xml
+      run: sed -i 's/<version>.*<\/version>/<version>1.0.$version<\/version>/' pom.xml
 
     
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build --build-arg VERSION=$version . --file Dockerfile --tag my-image-name:$version
