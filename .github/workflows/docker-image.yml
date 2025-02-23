@@ -31,3 +31,10 @@ jobs:
     
     - name: push the image to docker hub  
       run: docker push ${{ secrets.USER_DOCKER_HUB }}/hello_word_project:$version
+
+    - name: deploy the image
+      run: ssh -o -i ${{secrets.AWS_SECRET}} ubuntu@ec2-18-209-227-146.compute-1.amazonaws.com '
+              docker pull ${{ secrets.USER_DOCKER_HUB }}/hello_word_project:$version
+              docker run -d --name container_$version ${{ secrets.USER_DOCKER_HUB }}/hello_word_project:$version 
+              docker logs container_$version  '
+
