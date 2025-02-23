@@ -17,7 +17,7 @@ WORKDIR /app
 
 ARG VERSION
 
-COPY --from=build /app/target/my-app-${VERSION}.jar ./
+COPY --from=build /app/target/my-app-1.0.${VERSION}.jar ./
 
 CMD ["java", "-jar", "my-app-${VERSION}.jar"]
 
