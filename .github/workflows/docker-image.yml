@@ -32,14 +32,14 @@ jobs:
     - name: push the image to docker hub  
       run: docker push ${{ secrets.USER_DOCKER_HUB }}/hello_word_project:$version
 
-    - name: Save SSH Key
+    - name: save SSH Key
       run: echo "${{ secrets.AWS_SECRET }}" > new_key.pem
 
     - name: a  
       run: chmod 600 new_key.pem
 
     - name: deploy the image
-      run: ssh -o -i "new_key.pem" ubuntu@ec2-18-209-227-146.compute-1.amazonaws.com '
+      run: ssh -o StrictHostKeyChecking=no -i new_key.pem ubuntu@ec2-18-209-227-146.compute-1.amazonaws.com '
               docker pull ${{ secrets.USER_DOCKER_HUB }}/hello_word_project:$version
               docker run -d --name container_$version ${{ secrets.USER_DOCKER_HUB }}/hello_word_project:$version 
               docker logs container_$version  '
