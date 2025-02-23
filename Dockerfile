@@ -6,7 +6,7 @@ COPY pom.xml .
 
 COPY src/ ./src
 
-RUN mvn package  
+RUN mvn clean  package --file pom.xml
 
 FROM openjdk:17.0.2-slim-buster AS run 
 
